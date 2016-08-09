@@ -1,0 +1,1127 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     48584,       1119]
+NotebookOptionsPosition[     47272,       1072]
+NotebookOutlinePosition[     47616,       1087]
+CellTagsIndexPosition[     47573,       1084]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.66547549375187*^9, 3.6654754971310635`*^9}}],
+
+Cell["\<\
+Lambda System three state ladder 
+
+Bandwith, its inverse, initial and final times as well as the time difference \
+between the lasers are as follows\
+\>", "Text",
+ CellChangeTimes->{{3.6654683659742427`*^9, 3.6654684199763193`*^9}, {
+  3.6654754897456408`*^9, 3.665475491161722*^9}, {3.6658213518037014`*^9, 
+  3.6658213519912014`*^9}, {3.6658354837719493`*^9, 3.6658354873016253`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"\[Tau]", "=", "6"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"1", "/", "\[Tau]"}]}], "Input",
+ CellChangeTimes->{{3.665835500180588*^9, 3.665835504649349*^9}, {
+  3.6659947107720833`*^9, 3.665994711221401*^9}}],
+
+Cell[BoxData[
+ FractionBox["1", "6"]], "Output",
+ CellChangeTimes->{
+  3.66583550628996*^9, 3.6658362294656687`*^9, 3.665838637527622*^9, 
+   3.6658389436468296`*^9, {3.665839040327687*^9, 3.6658390592728543`*^9}, 
+   3.6658403608585668`*^9, 3.665840411242254*^9, 3.6658408661175385`*^9, 
+   3.6659039448843327`*^9, {3.6659041700442824`*^9, 3.665904188343193*^9}, 
+   3.665905137364036*^9, 3.665905553377979*^9, 3.6659071363696527`*^9, 
+   3.665907197791631*^9, 3.665908085123294*^9, 3.6659100198266068`*^9, 
+   3.6659241804332933`*^9, 3.6659244491139717`*^9, 3.6659246244103546`*^9, 
+   3.6659257757301464`*^9, 3.665991909173851*^9, 3.6659921458806906`*^9, {
+   3.665994031667122*^9, 3.665994038019627*^9}, 3.665994115333327*^9, 
+   3.665994712760135*^9, 3.665994824794327*^9, 3.665995706558518*^9, 
+   3.666011747775751*^9, 3.6683273236654425`*^9, 3.6683330018160152`*^9, 
+   3.6683393775612698`*^9, 3.679727420834423*^9}]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ti", "=", "0"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"tf", "=", "200"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[CapitalDelta]t", "=", "0"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.665820703195278*^9, 3.66582071390042*^9}, {
+   3.665820794562913*^9, 3.6658208383172016`*^9}, {3.665820960935898*^9, 
+   3.665820987049534*^9}, {3.665821246672324*^9, 3.6658212587055984`*^9}, {
+   3.6658352410924616`*^9, 3.665835242951852*^9}, {3.665835481475028*^9, 
+   3.665835509618177*^9}, {3.6658386315106897`*^9, 3.6658386316669436`*^9}, {
+   3.6658389363258495`*^9, 3.6658389364821*^9}, {3.6658390372183275`*^9, 
+   3.6658390579760113`*^9}, {3.665904164294243*^9, 3.6659041872963233`*^9}, {
+   3.6659051326034355`*^9, 3.6659051339784517`*^9}, 3.665994823090124*^9, {
+   3.6659957043259425`*^9, 3.6659957048042808`*^9}, {3.666011744448403*^9, 
+   3.6660117457183037`*^9}}],
+
+Cell["The gaussian equations for both Rabi frequencies are", "Text",
+ CellChangeTimes->{{3.6658209147118683`*^9, 3.6658209168837976`*^9}, {
+  3.665820992172039*^9, 3.6658210150315976`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[CapitalOmega]1", "[", "t_", "]"}], ":=", 
+   RowBox[{"\[CapitalOmega]P", "*", 
+    RowBox[{"Exp", "[", 
+     RowBox[{
+      RowBox[{"-", "2"}], "*", 
+      RowBox[{"Log", "[", "2", "]"}], "*", " ", 
+      RowBox[{
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"t", "-", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"tf", "-", "ti"}], ")"}], "/", "2"}]}], ")"}], "2"], "/", 
+       SuperscriptBox["\[Tau]", "2"]}]}], "]"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[CapitalOmega]2", "[", "t_", "]"}], ":=", 
+   RowBox[{"\[CapitalOmega]S", "*", 
+    RowBox[{"Exp", "[", 
+     RowBox[{
+      RowBox[{"-", "2"}], "*", 
+      RowBox[{"Log", "[", "2", "]"}], "*", " ", 
+      RowBox[{
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"t", "+", "\[CapitalDelta]t"}], ")"}], "-", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"tf", "-", "ti"}], ")"}], "/", "2"}]}], ")"}], "2"], "/", 
+       SuperscriptBox["\[Tau]", "2"]}]}], "]"}]}]}], ";"}]}], "Input",
+ CellChangeTimes->{
+  3.665820522791255*^9, {3.6658205528424697`*^9, 3.6658205643582354`*^9}, {
+   3.6658210253615336`*^9, 3.665821080677862*^9}, {3.6658211437600365`*^9, 
+   3.6658211621530046`*^9}, {3.665821268895127*^9, 3.6658212696764193`*^9}, {
+   3.6658217274029236`*^9, 3.6658217489444466`*^9}, {3.665825180768084*^9, 
+   3.665825202982061*^9}, {3.6659241603069744`*^9, 3.665924175409732*^9}}],
+
+Cell["Both pulses are separated by \[CapitalDelta]t. ", "Text",
+ CellChangeTimes->{{3.6659102578486185`*^9, 3.6659102694276752`*^9}, {
+  3.665910372255307*^9, 3.6659103912101264`*^9}, {3.665910437782543*^9, 
+  3.665910439954088*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Block", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[CapitalOmega]1", ",", "\[CapitalOmega]2", ",", "t"}], "}"}], 
+     ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"\[CapitalOmega]1", "[", "t_", "]"}], ":=", 
+       RowBox[{"\[CapitalOmega]P", "*", 
+        RowBox[{"Exp", "[", 
+         RowBox[{
+          RowBox[{"-", "2"}], "*", 
+          RowBox[{"Log", "[", "2", "]"}], "*", " ", 
+          RowBox[{
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{"t", "-", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"tf", "-", "ti"}], ")"}], "/", "2"}]}], ")"}], "2"], 
+           "/", 
+           SuperscriptBox["\[Tau]", "2"]}]}], "]"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"\[CapitalOmega]2", "[", "t_", "]"}], ":=", 
+       RowBox[{"\[CapitalOmega]S", "*", 
+        RowBox[{"Exp", "[", 
+         RowBox[{
+          RowBox[{"-", "2"}], "*", 
+          RowBox[{"Log", "[", "2", "]"}], "*", " ", 
+          RowBox[{
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{"t", "+", "\[CapitalDelta]t"}], ")"}], "-", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"tf", "-", "ti"}], ")"}], "/", "2"}]}], ")"}], "2"], 
+           "/", 
+           SuperscriptBox["\[Tau]", "2"]}]}], "]"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Plot", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"\[CapitalOmega]1", "[", "t", "]"}], ",", 
+          RowBox[{"\[CapitalOmega]2", "[", "t", "]"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"t", ",", 
+          RowBox[{"ti", "+", 
+           RowBox[{"2", "*", 
+            RowBox[{"tf", "/", "\[Tau]"}]}]}], ",", 
+          RowBox[{"tf", "-", 
+           RowBox[{"2", "*", 
+            RowBox[{"tf", "/", "\[Tau]"}]}]}]}], "}"}], ",", " ", 
+        RowBox[{"PlotRange", "\[Rule]", "All"}], ",", " ", 
+        RowBox[{"PlotLegends", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{"\"\<Pump\>\"", ",", "\"\<Stokes\>\""}], "}"}]}]}], 
+       "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[CapitalOmega]P", ",", "1"}], "}"}], ",", "0", ",", "20", ",",
+      "0.4"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[CapitalOmega]S", ",", "1"}], "}"}], ",", "0", ",", "20", ",",
+      "0.4"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6659061580788326`*^9, 3.6659061785496016`*^9}, {
+   3.665906208580961*^9, 3.665906245402166*^9}, {3.665906806212716*^9, 
+   3.665906839796197*^9}, {3.6659069578607197`*^9, 3.6659070545429077`*^9}, {
+   3.665907117164896*^9, 3.6659071261643744`*^9}, {3.665907193055313*^9, 
+   3.6659072229557247`*^9}, 3.665908026495681*^9, 3.665908068430561*^9, {
+   3.6659100172242756`*^9, 3.665910073259899*^9}, {3.6659101377774444`*^9, 
+   3.66591013844592*^9}, {3.6659102188956957`*^9, 3.6659102302161884`*^9}, {
+   3.66591030413767*^9, 3.6659103588687487`*^9}, {3.665924160315988*^9, 
+   3.665924175425743*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`\[CapitalOmega]P$$ = 
+    14.000000000000007`, $CellContext`\[CapitalOmega]S$$ = 9.600000000000003, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[CapitalOmega]P$$], 1}, 0, 20, 0.4}, {{
+       Hold[$CellContext`\[CapitalOmega]S$$], 1}, 0, 20, 0.4}}, 
+    Typeset`size$$ = {447., {111., 117.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[CapitalOmega]P$2354$$ = 
+    0, $CellContext`\[CapitalOmega]S$2355$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`\[CapitalOmega]P$$ = 
+        1, $CellContext`\[CapitalOmega]S$$ = 1}, "ControllerVariables" :> {
+        Hold[$CellContext`\[CapitalOmega]P$$, \
+$CellContext`\[CapitalOmega]P$2354$$, 0], 
+        Hold[$CellContext`\[CapitalOmega]S$$, \
+$CellContext`\[CapitalOmega]S$2355$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Block[{$CellContext`\[CapitalOmega]1, $CellContext`\[CapitalOmega]2, \
+$CellContext`t}, $CellContext`\[CapitalOmega]1[
+           Pattern[$CellContext`t$, 
+            Blank[]]] := $CellContext`\[CapitalOmega]P$$ 
+          Exp[(-2) 
+            Log[2] (($CellContext`t$ - ($CellContext`tf - $CellContext`ti)/
+               2)^2/$CellContext`\[Tau]^2)]; $CellContext`\[CapitalOmega]2[
+           Pattern[$CellContext`t$, 
+            Blank[]]] := $CellContext`\[CapitalOmega]S$$ 
+          Exp[(-2) 
+            Log[2] ((($CellContext`t$ + $CellContext`\[CapitalDelta]t) - \
+($CellContext`tf - $CellContext`ti)/2)^2/$CellContext`\[Tau]^2)]; Plot[{
+           $CellContext`\[CapitalOmega]1[$CellContext`t], 
+           $CellContext`\[CapitalOmega]2[$CellContext`t]}, {$CellContext`t, \
+$CellContext`ti + 2 ($CellContext`tf/$CellContext`\[Tau]), $CellContext`tf - 
+           2 ($CellContext`tf/$CellContext`\[Tau])}, PlotRange -> All, 
+          PlotLegends -> {"Pump", "Stokes"}]], 
+      "Specifications" :> {{{$CellContext`\[CapitalOmega]P$$, 1}, 0, 20, 
+         0.4}, {{$CellContext`\[CapitalOmega]S$$, 1}, 0, 20, 0.4}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{498., {196., 203.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.6659071365415277`*^9, 3.6659071978072567`*^9, 3.665908085153309*^9, {
+   3.6659100198566403`*^9, 3.66591004354799*^9}, 3.66591010122024*^9, 
+   3.665910139490662*^9, 3.665910231340003*^9, 3.6659103605279107`*^9, 
+   3.665924180459324*^9, 3.6659244491459846`*^9, 3.665924624439375*^9, 
+   3.6659257757601657`*^9, 3.6659919096571913`*^9, 3.665992145912712*^9, {
+   3.6659940316971436`*^9, 3.6659940380476494`*^9}, 3.6659941153643465`*^9, 
+   3.6659947127861657`*^9, 3.6659948248193502`*^9, 3.6659957065885396`*^9, 
+   3.6660117478267756`*^9, 3.6683273237114806`*^9, 3.6683330018580475`*^9, 
+   3.668339377608308*^9, 3.679727420880455*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "The following representation gives the value of the angle of mix \
+\[CapitalPhi] =Arctan ",
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    SubscriptBox["\[CapitalOmega]", "P"], 
+    SubscriptBox["\[CapitalOmega]", "S"]], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ "and the geometrical average of the Rabi frequencies."
+}], "Text",
+ CellChangeTimes->{{3.6659114817023087`*^9, 3.6659116100270166`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"ArcTan", "[", 
+      RowBox[{"\[CapitalOmega]P", "*", 
+       RowBox[{
+        RowBox[{"Exp", "[", 
+         RowBox[{
+          RowBox[{"-", "2"}], "*", 
+          RowBox[{"Log", "[", "2", "]"}], "*", " ", 
+          RowBox[{
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{"t", "-", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"tf", "-", "ti"}], ")"}], "/", "2"}]}], ")"}], "2"], 
+           "/", 
+           SuperscriptBox["\[Tau]", "2"]}]}], "]"}], "/", 
+        RowBox[{"(", 
+         RowBox[{"\[CapitalOmega]S", "*", 
+          RowBox[{"Exp", "[", 
+           RowBox[{
+            RowBox[{"-", "2"}], "*", 
+            RowBox[{"Log", "[", "2", "]"}], "*", " ", 
+            RowBox[{
+             SuperscriptBox[
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{"t", "+", "\[CapitalDelta]t"}], ")"}], "-", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{"tf", "-", "ti"}], ")"}], "/", "2"}]}], ")"}], "2"],
+              "/", 
+             SuperscriptBox["\[Tau]", "2"]}]}], "]"}]}], ")"}]}]}], "]"}], 
+     ",", 
+     RowBox[{"Sqrt", "[", 
+      RowBox[{
+       SuperscriptBox["\[CapitalOmega]P", "2"], "+", 
+       SuperscriptBox["\[CapitalOmega]S", "2"]}], "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[CapitalOmega]P", ",", "1"}], "}"}], ",", "0", ",", "20"}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[CapitalOmega]S", ",", "1"}], "}"}], ",", "0", ",", "20"}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", 
+     RowBox[{"ti", "+", 
+      RowBox[{"2", "*", 
+       RowBox[{"tf", "/", "\[Tau]"}]}]}], ",", 
+     RowBox[{"tf", "-", 
+      RowBox[{"2", "*", 
+       RowBox[{"tf", "/", "\[Tau]"}]}]}]}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.665835605662001*^9, 3.66583563341805*^9}, {
+  3.665835694902299*^9, 3.665835738909417*^9}, {3.6658359507343388`*^9, 
+  3.665835960290393*^9}, {3.6658366160229115`*^9, 3.6658366604056597`*^9}, {
+  3.665904784104331*^9, 3.6659048699890532`*^9}, {3.6659049867007413`*^9, 
+  3.6659050122550893`*^9}, {3.6659050520219913`*^9, 3.6659050594958982`*^9}, {
+  3.6659056478283477`*^9, 3.665905650244071*^9}, {3.6659107727410107`*^9, 
+  3.665910862441286*^9}, {3.665911333128311*^9, 3.6659113360283813`*^9}, {
+  3.6659114253797026`*^9, 3.6659114320244455`*^9}, {3.6659241603460097`*^9, 
+  3.6659241754387507`*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`t$$ = Rational[
+    200, 3], $CellContext`\[CapitalOmega]P$$ = 
+    1, $CellContext`\[CapitalOmega]S$$ = 1, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[CapitalOmega]P$$], 1}, 0, 20}, {{
+       Hold[$CellContext`\[CapitalOmega]S$$], 1}, 0, 20}, {
+      Hold[$CellContext`t$$], 
+      Rational[200, 3], 
+      Rational[400, 3]}}, Typeset`size$$ = {65.8, {10.1, 15.93}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[CapitalOmega]P$2556$$ = 
+    0, $CellContext`\[CapitalOmega]S$2557$$ = 0, $CellContext`t$2558$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`t$$ = 
+        Rational[200, 3], $CellContext`\[CapitalOmega]P$$ = 
+        1, $CellContext`\[CapitalOmega]S$$ = 1}, "ControllerVariables" :> {
+        Hold[$CellContext`\[CapitalOmega]P$$, \
+$CellContext`\[CapitalOmega]P$2556$$, 0], 
+        Hold[$CellContext`\[CapitalOmega]S$$, \
+$CellContext`\[CapitalOmega]S$2557$$, 0], 
+        Hold[$CellContext`t$$, $CellContext`t$2558$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> {
+        ArcTan[$CellContext`\[CapitalOmega]P$$ (
+          Exp[(-2) 
+            Log[2] (($CellContext`t$$ - ($CellContext`tf - $CellContext`ti)/
+               2)^2/$CellContext`\[Tau]^2)]/($CellContext`\[CapitalOmega]S$$ 
+          Exp[(-2) 
+            Log[2] ((($CellContext`t$$ + $CellContext`\[CapitalDelta]t) - \
+($CellContext`tf - $CellContext`ti)/2)^2/$CellContext`\[Tau]^2)]))], 
+        Sqrt[$CellContext`\[CapitalOmega]P$$^2 + \
+$CellContext`\[CapitalOmega]S$$^2]}, 
+      "Specifications" :> {{{$CellContext`\[CapitalOmega]P$$, 1}, 0, 
+         20}, {{$CellContext`\[CapitalOmega]S$$, 1}, 0, 
+         20}, {$CellContext`t$$, 
+         Rational[200, 3], 
+         Rational[400, 3]}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{265., {84., 91.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.6659114324987683`*^9, 3.665924180580412*^9, 3.6659244492680826`*^9, 
+   3.66592462455846*^9, 3.6659257758952646`*^9, 3.6659919106689005`*^9, 
+   3.665992146253954*^9, {3.6659940318132277`*^9, 3.665994038164731*^9}, 
+   3.665994115483432*^9, 3.6659947129032483`*^9, 3.6659948249704523`*^9, 
+   3.6659957067046337`*^9, 3.6660117479898987`*^9, 3.6683273238786106`*^9, 
+   3.6683330019721155`*^9, 3.668339377727388*^9, 3.679727421434835*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "First we send a pulse from the Stokes laser so \[CapitalPhi]=0. Then a pump \
+laser pulse which is still incident on the sample when the Stokes pulse has \
+already passed so \[CapitalPhi]=",
+ Cell[BoxData[
+  FormBox[
+   FractionBox["\[Pi]", "2"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " which is a gradual change given the shape of the pulses."
+}], "Text",
+ CellChangeTimes->{{3.6659052085696387`*^9, 3.665905242473241*^9}, {
+   3.665905282466031*^9, 3.6659055459123535`*^9}, 3.665911511755253*^9}],
+
+Cell["\<\
+
+The frequencies that are associated with the gain of population and the loss \
+of population for any state are, respectively\
+\>", "Text",
+ CellChangeTimes->{{3.664784971766151*^9, 3.6647849896611743`*^9}, {
+  3.665213556516534*^9, 3.66521356563095*^9}, {3.665836907020155*^9, 
+  3.6658369699566436`*^9}, {3.665837109633469*^9, 3.66583711380536*^9}, {
+  3.665904688509663*^9, 3.665904736561496*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"\[CapitalDelta]P", "*", 
+         SuperscriptBox["\[CapitalOmega]P", "2"]}], "+", 
+        RowBox[{"\[CapitalDelta]S", "*", 
+         SuperscriptBox["\[CapitalOmega]S", "2"]}]}], ")"}], "/", 
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox["\[CapitalOmega]P", "2"], "+", 
+        SuperscriptBox["\[CapitalOmega]S", "2"]}], ")"}]}], ",", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"\[CapitalDelta]P", "-", "\[CapitalDelta]S"}], ")"}], "*", 
+      "\[CapitalOmega]P", "*", 
+      RowBox[{"\[CapitalOmega]S", "/", 
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox["\[CapitalOmega]P", "2"], "+", 
+         SuperscriptBox["\[CapitalOmega]S", "2"]}], ")"}]}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[CapitalDelta]P", ",", "0"}], "}"}], ",", "0", ",", "2", ",", 
+     "0.1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[CapitalDelta]S", ",", "0"}], "}"}], ",", "0", ",", "2", ",", 
+     "0.1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[CapitalOmega]P", ",", "1"}], "}"}], ",", "0", ",", "20", ",",
+      "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[CapitalOmega]S", ",", "1"}], "}"}], ",", "0", ",", "20", ",",
+      "1"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6647819860855646`*^9, 3.664782061607884*^9}, {
+   3.664782125536541*^9, 3.6647821329279633`*^9}, {3.664782291880055*^9, 
+   3.664782296327309*^9}, {3.6647823639531775`*^9, 3.664782391663762*^9}, {
+   3.664782684896534*^9, 3.664782697639263*^9}, {3.6647827766717834`*^9, 
+   3.6647827768477936`*^9}, {3.664782888648188*^9, 3.66478292872048*^9}, {
+   3.6647829679217224`*^9, 3.66478302540001*^9}, {3.6658357507830796`*^9, 
+   3.665835766596208*^9}, {3.665835841184188*^9, 3.66583594123273*^9}, {
+   3.665836698241379*^9, 3.665836827801489*^9}, 3.6658368904712224`*^9, {
+   3.6658369833578367`*^9, 3.665837081616021*^9}, {3.665837132165787*^9, 
+   3.6658371644309826`*^9}, {3.6659241603570175`*^9, 3.665924175443742*^9}, {
+   3.6659244286163692`*^9, 3.665924436103711*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`\[CapitalDelta]P$$ = 
+    0, $CellContext`\[CapitalDelta]S$$ = 0, $CellContext`\[CapitalOmega]P$$ = 
+    1, $CellContext`\[CapitalOmega]S$$ = 1, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[CapitalDelta]P$$], 0}, 0, 2, 0.1}, {{
+       Hold[$CellContext`\[CapitalDelta]S$$], 0}, 0, 2, 0.1}, {{
+       Hold[$CellContext`\[CapitalOmega]P$$], 1}, 0, 20, 1}, {{
+       Hold[$CellContext`\[CapitalOmega]S$$], 1}, 0, 20, 1}}, 
+    Typeset`size$$ = {45., {2., 8.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[CapitalDelta]P$2589$$ = 
+    0, $CellContext`\[CapitalDelta]S$2590$$ = 
+    0, $CellContext`\[CapitalOmega]P$2591$$ = 
+    0, $CellContext`\[CapitalOmega]S$2592$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`\[CapitalDelta]P$$ = 
+        0, $CellContext`\[CapitalDelta]S$$ = 
+        0, $CellContext`\[CapitalOmega]P$$ = 
+        1, $CellContext`\[CapitalOmega]S$$ = 1}, "ControllerVariables" :> {
+        Hold[$CellContext`\[CapitalDelta]P$$, \
+$CellContext`\[CapitalDelta]P$2589$$, 0], 
+        Hold[$CellContext`\[CapitalDelta]S$$, \
+$CellContext`\[CapitalDelta]S$2590$$, 0], 
+        Hold[$CellContext`\[CapitalOmega]P$$, \
+$CellContext`\[CapitalOmega]P$2591$$, 0], 
+        Hold[$CellContext`\[CapitalOmega]S$$, \
+$CellContext`\[CapitalOmega]S$2592$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, 
+      "Body" :> {($CellContext`\[CapitalDelta]P$$ \
+$CellContext`\[CapitalOmega]P$$^2 + $CellContext`\[CapitalDelta]S$$ \
+$CellContext`\[CapitalOmega]S$$^2)/($CellContext`\[CapitalOmega]P$$^2 + \
+$CellContext`\[CapitalOmega]S$$^2), ($CellContext`\[CapitalDelta]P$$ - \
+$CellContext`\[CapitalDelta]S$$) $CellContext`\[CapitalOmega]P$$ \
+($CellContext`\[CapitalOmega]S$$/($CellContext`\[CapitalOmega]P$$^2 + \
+$CellContext`\[CapitalOmega]S$$^2))}, 
+      "Specifications" :> {{{$CellContext`\[CapitalDelta]P$$, 0}, 0, 2, 
+         0.1}, {{$CellContext`\[CapitalDelta]S$$, 0}, 0, 2, 
+         0.1}, {{$CellContext`\[CapitalOmega]P$$, 1}, 0, 20, 
+         1}, {{$CellContext`\[CapitalOmega]S$$, 1}, 0, 20, 1}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{265., {92., 99.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.664782137524226*^9, 3.664782299395485*^9, {3.6647823825982437`*^9, 
+   3.664782392627817*^9}, 3.6647827781248665`*^9, 3.6647829319396644`*^9, {
+   3.6647829949922705`*^9, 3.66478302592404*^9}, 3.664783112974019*^9, 
+   3.6647838916443715`*^9, 3.6647841071746993`*^9, 3.66478525637743*^9, 
+   3.6647852901513615`*^9, {3.664785346976612*^9, 3.6647853605083857`*^9}, 
+   3.6647856423679075`*^9, 3.664786176853675*^9, 3.6652135073256474`*^9, 
+   3.6652135482485194`*^9, {3.665213823487005*^9, 3.665213831396219*^9}, 
+   3.665213882264309*^9, 3.66521436405844*^9, {3.6652146257140837`*^9, 
+   3.665214635245701*^9}, 3.665214688418595*^9, 3.665214999367143*^9, 
+   3.6652150585898476`*^9, {3.6652150938791094`*^9, 3.6652151041303277`*^9}, 
+   3.6654717002982025`*^9, 3.6654762077689*^9, 3.6654762465019555`*^9, 
+   3.665477758997179*^9, 3.665477800631239*^9, 3.6658197728814015`*^9, 
+   3.665822697021772*^9, 3.665832834545431*^9, 3.6658358440123243`*^9, 
+   3.665836229590686*^9, 3.665836855524392*^9, 3.665837039306054*^9, 
+   3.665837083008541*^9, {3.66583713622589*^9, 3.6658371653372264`*^9}, 
+   3.6658372697397146`*^9, 3.6658386376526256`*^9, 3.66583894377183*^9, {
+   3.6658390404526725`*^9, 3.6658390593978505`*^9}, 3.665840361452317*^9, 
+   3.665840411664129*^9, 3.665840866695653*^9, 3.6659039470750036`*^9, {
+   3.6659041702161503`*^9, 3.665904188499448*^9}, 3.6659051375930853`*^9, 
+   3.665905553674841*^9, 3.6659071366509004`*^9, 3.6659071981197677`*^9, 
+   3.6659080853304353`*^9, 3.6659100200818152`*^9, 3.665924180642455*^9, 
+   3.6659244493391232`*^9, 3.665924624627509*^9, 3.6659257759743223`*^9, 
+   3.665991910788977*^9, 3.6659921464090843`*^9, {3.6659940318802633`*^9, 
+   3.6659940382327785`*^9}, 3.665994115552481*^9, 3.6659947130193305`*^9, 
+   3.6659948250374994`*^9, 3.6659957067726693`*^9, 3.666011748006915*^9, 
+   3.668327323948644*^9, 3.6683330020391626`*^9, 3.6683393777954235`*^9, 
+   3.6797274214548492`*^9}]
+}, Open  ]],
+
+Cell["The Hamiltonian is", "Text",
+ CellChangeTimes->{{3.665468429340333*^9, 3.665468437873345*^9}, {
+  3.6658213617431545`*^9, 3.6658213623213387`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"HA", "[", "t_", "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"2", "\[CapitalDelta]P"}], ",", 
+      RowBox[{"\[CapitalOmega]1", "[", "t", "]"}], ",", "0"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"\[CapitalOmega]1", "[", "t", "]"}], ",", "0", ",", 
+      RowBox[{"\[CapitalOmega]2", "[", "t", "]"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", 
+      RowBox[{"\[CapitalOmega]2", "[", "t", "]"}], ",", 
+      RowBox[{"2", "\[CapitalDelta]S"}]}], "}"}]}], 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"HA", "[", "t", "]"}], "//", "MatrixForm"}]}], "Input",
+ CellChangeTimes->{{3.665468449933362*^9, 3.665468645875289*^9}, {
+  3.665476404653196*^9, 3.6654764069231987`*^9}, {3.6654764516812625`*^9, 
+  3.6654765635874243`*^9}, {3.6654766659835806`*^9, 3.6654768660679293`*^9}, {
+  3.6654774024868217`*^9, 3.6654774048068247`*^9}, {3.6658210969612074`*^9, 
+  3.665821132556836*^9}, {3.6658212769420547`*^9, 3.665821279973391*^9}, {
+  3.6658241512937574`*^9, 3.665824153278124*^9}, {3.665825206808426*^9, 
+  3.665825228200388*^9}, {3.665924428625379*^9, 3.665924436106714*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", GridBox[{
+     {
+      RowBox[{"2", " ", "\[CapitalDelta]P"}], 
+      RowBox[{
+       SuperscriptBox["2", 
+        RowBox[{
+         RowBox[{"-", 
+          FractionBox["1", "18"]}], " ", 
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"-", "100"}], "+", "t"}], ")"}], "2"]}]], " ", 
+       "\[CapitalOmega]P"}], "0"},
+     {
+      RowBox[{
+       SuperscriptBox["2", 
+        RowBox[{
+         RowBox[{"-", 
+          FractionBox["1", "18"]}], " ", 
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"-", "100"}], "+", "t"}], ")"}], "2"]}]], " ", 
+       "\[CapitalOmega]P"}], "0", 
+      RowBox[{
+       SuperscriptBox["2", 
+        RowBox[{
+         RowBox[{"-", 
+          FractionBox["1", "18"]}], " ", 
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"-", "100"}], "+", "t"}], ")"}], "2"]}]], " ", 
+       "\[CapitalOmega]S"}]},
+     {"0", 
+      RowBox[{
+       SuperscriptBox["2", 
+        RowBox[{
+         RowBox[{"-", 
+          FractionBox["1", "18"]}], " ", 
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"-", "100"}], "+", "t"}], ")"}], "2"]}]], " ", 
+       "\[CapitalOmega]S"}], 
+      RowBox[{"2", " ", "\[CapitalDelta]S"}]}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{
+  3.665924449397171*^9, 3.665924624686551*^9, 3.6659257760353613`*^9, 
+   3.6659919109731216`*^9, 3.6659921466202164`*^9, {3.6659940319383135`*^9, 
+   3.665994038292817*^9}, 3.6659941156105213`*^9, 3.6659947130773706`*^9, 
+   3.6659948250975423`*^9, 3.6659957068277216`*^9, 3.666011748066945*^9, 
+   3.6683273239896727`*^9, 3.6683330021022196`*^9, 3.668339377858468*^9, 
+   3.6797274215148907`*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "Where \[CapitalDelta]P,\[CapitalDelta]S are the detuning between states 1 \
+and 2, and 2 and 3 respectively. Also \[CapitalOmega]1 and \[CapitalOmega]2 \
+are gaussian functions and we have applied RWA to both interactions undergone \
+by level 2 with levels 1 and 3. Probability loss is neglected.\n\nLet us \
+solve now the Schr\[ODoubleDot]dinger eq for 3 states ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubscriptBox["C", "i"], "'"}], "=", 
+    RowBox[{"HA", "*", 
+     SubscriptBox["C", "i"]}]}], TraditionalForm]]],
+ " so as to find the population in each level."
+}], "Text",
+ CellChangeTimes->{{3.665468656445304*^9, 3.665468691937355*^9}, {
+   3.6654689337117033`*^9, 3.6654690040158052`*^9}, {3.6654691105589647`*^9, 
+   3.6654691757510567`*^9}, {3.6654695606438246`*^9, 
+   3.6654696133028994`*^9}, {3.6654699117615285`*^9, 3.665469912217554*^9}, {
+   3.6654773830047936`*^9, 3.6654773967148128`*^9}, {3.6654774799229336`*^9, 
+   3.6654776084751196`*^9}, 3.665820855770546*^9, {3.665820911227496*^9, 
+   3.6658209533264513`*^9}, {3.665821193545844*^9, 3.665821234265959*^9}, {
+   3.665821349366125*^9, 3.66582137232143*^9}, {3.6659244287384553`*^9, 
+   3.6659244360666857`*^9}, {3.665996490186548*^9, 3.6659965024962673`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Block", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "c1Solved", ",", "c2Solved", ",", "c3Solved", " ", ",", "c1", ",", "c2",
+        ",", "c3", ",", " ", "t", ",", "s", ",", "\[CapitalOmega]1", ",", 
+       "\[CapitalOmega]2", ",", "HA"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"\[CapitalOmega]1", "[", "t_", "]"}], ":=", 
+       RowBox[{"\[CapitalOmega]P", "*", 
+        RowBox[{"Exp", "[", 
+         RowBox[{
+          RowBox[{"-", "2"}], "*", 
+          RowBox[{"Log", "[", "2", "]"}], "*", " ", 
+          RowBox[{
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{"t", "-", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"tf", "-", "ti"}], ")"}], "/", "2"}]}], ")"}], "2"], 
+           "/", 
+           SuperscriptBox["\[Tau]", "2"]}]}], "]"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"\[CapitalOmega]2", "[", "t_", "]"}], ":=", 
+       RowBox[{"\[CapitalOmega]S", "*", 
+        RowBox[{"Exp", "[", 
+         RowBox[{
+          RowBox[{"-", "2"}], "*", 
+          RowBox[{"Log", "[", "2", "]"}], "*", " ", 
+          RowBox[{
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{"t", "+", "\[CapitalDelta]t"}], ")"}], "-", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"tf", "-", "ti"}], ")"}], "/", "2"}]}], ")"}], "2"], 
+           "/", 
+           SuperscriptBox["\[Tau]", "2"]}]}], "]"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"HA", "[", "t_", "]"}], ":=", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"2", "\[CapitalDelta]P"}], ",", 
+           RowBox[{"\[CapitalOmega]1", "[", "t", "]"}], ",", "0"}], "}"}], 
+         ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"\[CapitalOmega]1", "[", "t", "]"}], ",", "0", ",", 
+           RowBox[{"\[CapitalOmega]2", "[", "t", "]"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"0", ",", 
+           RowBox[{"\[CapitalOmega]2", "[", "t", "]"}], ",", 
+           RowBox[{"2", "\[CapitalDelta]S"}]}], "}"}]}], "}"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"s", "=", 
+       RowBox[{"NDSolve", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"c1", "'"}], "[", "t", "]"}], ",", 
+              RowBox[{
+               RowBox[{"c2", "'"}], "[", "t", "]"}], ",", 
+              RowBox[{
+               RowBox[{"c3", "'"}], "[", "t", "]"}]}], "}"}], "\[Equal]", 
+            RowBox[{
+             RowBox[{"-", "\[ImaginaryI]"}], " ", 
+             RowBox[{
+              RowBox[{"HA", "[", "t", "]"}], ".", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"c1", "[", "t", "]"}], ",", 
+                RowBox[{"c2", "[", "t", "]"}], ",", 
+                RowBox[{"c3", "[", "t", "]"}]}], "}"}]}]}]}], ",", 
+           RowBox[{
+            RowBox[{"c1", "[", "ti", "]"}], "\[Equal]", "1"}], ",", 
+           RowBox[{
+            RowBox[{"c2", "[", "ti", "]"}], "\[Equal]", "0"}], ",", 
+           RowBox[{
+            RowBox[{"c3", "[", "ti", "]"}], "\[Equal]", "0"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"c1", "[", "t", "]"}], ",", 
+           RowBox[{"c2", "[", "t", "]"}], ",", 
+           RowBox[{"c3", "[", "t", "]"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"t", ",", "ti", ",", "tf"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"c1Solved", "=", 
+       RowBox[{
+        RowBox[{"c1", "[", "t", "]"}], "/.", 
+        RowBox[{"s", "[", 
+         RowBox[{"[", 
+          RowBox[{"1", ",", "1"}], "]"}], "]"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"c2Solved", "=", 
+       RowBox[{
+        RowBox[{"c2", "[", "t", "]"}], "/.", 
+        RowBox[{"s", "[", 
+         RowBox[{"[", 
+          RowBox[{"1", ",", "2"}], "]"}], "]"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"c3Solved", "=", 
+       RowBox[{
+        RowBox[{"c3", "[", "t", "]"}], "/.", 
+        RowBox[{"s", "[", 
+         RowBox[{"[", 
+          RowBox[{"1", ",", "3"}], "]"}], "]"}]}]}], ";", 
+      "\[IndentingNewLine]", " ", 
+      RowBox[{"Plot", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"c1Solved", "*", 
+           RowBox[{"Conjugate", "[", "c1Solved", "]"}]}], ",", 
+          RowBox[{"c2Solved", "*", 
+           RowBox[{"Conjugate", "[", "c2Solved", "]"}]}], ",", 
+          RowBox[{"c3Solved", "*", 
+           RowBox[{"Conjugate", "[", "c3Solved", "]"}]}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"t", ",", 
+          RowBox[{"ti", "+", 
+           RowBox[{"2", "*", 
+            RowBox[{"tf", "/", "\[Tau]"}]}]}], ",", 
+          RowBox[{"tf", "-", 
+           RowBox[{"2", "*", 
+            RowBox[{"tf", "/", "\[Tau]"}]}]}]}], "}"}], ",", 
+        RowBox[{"PlotRange", "\[Rule]", "All"}], ",", " ", 
+        RowBox[{"PlotLegends", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<\!\(\*SubscriptBox[\(P\), \(1\)]\)\>\"", ",", 
+           "\"\<\!\(\*SubscriptBox[\(P\), \(2\)]\)\>\"", ",", 
+           "\"\<\!\(\*SubscriptBox[\(P\), \(3\)]\)\>\""}], "}"}]}]}], 
+       "]"}]}]}], "]"}], "\[IndentingNewLine]", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[CapitalDelta]P", ",", "2"}], "}"}], ",", 
+     RowBox[{"-", "20"}], ",", "20", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[CapitalDelta]S", ",", "4"}], "}"}], ",", 
+     RowBox[{"-", "20"}], ",", "20", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[CapitalOmega]P", ",", "20"}], "}"}], ",", "0", ",", "100", 
+     ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[CapitalOmega]S", ",", "20"}], "}"}], ",", "0", ",", "100", 
+     ",", "5"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.665820320673442*^9, 3.6658203631747484`*^9}, {
+   3.665820653129075*^9, 3.665820689913903*^9}, {3.665820741012018*^9, 
+   3.665820745574606*^9}, 3.665820780125223*^9, {3.66582146239174*^9, 
+   3.665821529331917*^9}, {3.6658216492613735`*^9, 3.665821655011419*^9}, {
+   3.6658217901490116`*^9, 3.6658218071655817`*^9}, {3.6658218462141147`*^9, 
+   3.6658218892165737`*^9}, {3.6658219591109877`*^9, 
+   3.6658219670973763`*^9}, {3.6658220264433193`*^9, 
+   3.6658220881420264`*^9}, {3.6658222581620617`*^9, 3.6658223469025574`*^9}, 
+   3.665822458346203*^9, {3.665822534602625*^9, 3.665822543176277*^9}, {
+   3.6658227035880857`*^9, 3.665822708960634*^9}, {3.665823543779702*^9, 
+   3.665823613395774*^9}, {3.6658252360598044`*^9, 3.665825309941183*^9}, {
+   3.665825371888089*^9, 3.6658254092706995`*^9}, {3.665831499079151*^9, 
+   3.665831499376026*^9}, 3.6658315319873695`*^9, {3.6658322843379498`*^9, 
+   3.66583229477477*^9}, {3.6658326999952965`*^9, 3.6658327165497527`*^9}, {
+   3.6658329436587043`*^9, 3.6658329857970705`*^9}, {3.6658330455497646`*^9, 
+   3.665833101268671*^9}, 3.6658332132377996`*^9, {3.6658332590798225`*^9, 
+   3.665833330710525*^9}, {3.6658333809198337`*^9, 3.665833384326124*^9}, {
+   3.66583354339522*^9, 3.6658335920325108`*^9}, {3.6658338268233585`*^9, 
+   3.6658338602969894`*^9}, {3.665834609119441*^9, 3.665834617267275*^9}, {
+   3.665834684665636*^9, 3.6658346901031895`*^9}, {3.665834905528872*^9, 
+   3.665834924626462*^9}, {3.6658349921939554`*^9, 3.6658350835969195`*^9}, {
+   3.6659241603850317`*^9, 3.6659241753836985`*^9}, {3.6659244285713563`*^9, 
+   3.665924445776599*^9}, {3.6659245907158823`*^9, 3.6659246227481585`*^9}, 
+   3.665924803962445*^9, 3.6659257731212873`*^9, {3.665991967059903*^9, 
+   3.6659919682777863`*^9}, {3.665992140434844*^9, 3.665992144068411*^9}, {
+   3.665994015392643*^9, 3.665994036307556*^9}, {3.6659941090648975`*^9, 
+   3.6659941127304916`*^9}, {3.665994149260263*^9, 3.6659941506872797`*^9}, {
+   3.6659946562700205`*^9, 3.6659946819429817`*^9}, {3.6683393708685303`*^9, 
+   3.668339375954122*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`\[CapitalDelta]P$$ = 
+    2, $CellContext`\[CapitalDelta]S$$ = 4, $CellContext`\[CapitalOmega]P$$ = 
+    20, $CellContext`\[CapitalOmega]S$$ = 20, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[CapitalDelta]P$$], 2}, -20, 20, 2}, {{
+       Hold[$CellContext`\[CapitalDelta]S$$], 4}, -20, 20, 2}, {{
+       Hold[$CellContext`\[CapitalOmega]P$$], 20}, 0, 100, 5}, {{
+       Hold[$CellContext`\[CapitalOmega]S$$], 20}, 0, 100, 5}}, 
+    Typeset`size$$ = {421., {111., 117.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[CapitalDelta]P$2630$$ = 
+    0, $CellContext`\[CapitalDelta]S$2631$$ = 
+    0, $CellContext`\[CapitalOmega]P$2632$$ = 
+    0, $CellContext`\[CapitalOmega]S$2633$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`\[CapitalDelta]P$$ = 
+        2, $CellContext`\[CapitalDelta]S$$ = 
+        4, $CellContext`\[CapitalOmega]P$$ = 
+        20, $CellContext`\[CapitalOmega]S$$ = 20}, "ControllerVariables" :> {
+        Hold[$CellContext`\[CapitalDelta]P$$, \
+$CellContext`\[CapitalDelta]P$2630$$, 0], 
+        Hold[$CellContext`\[CapitalDelta]S$$, \
+$CellContext`\[CapitalDelta]S$2631$$, 0], 
+        Hold[$CellContext`\[CapitalOmega]P$$, \
+$CellContext`\[CapitalOmega]P$2632$$, 0], 
+        Hold[$CellContext`\[CapitalOmega]S$$, \
+$CellContext`\[CapitalOmega]S$2633$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Block[{$CellContext`c1Solved, $CellContext`c2Solved, \
+$CellContext`c3Solved, $CellContext`c1, $CellContext`c2, $CellContext`c3, \
+$CellContext`t, $CellContext`s, $CellContext`\[CapitalOmega]1, $CellContext`\
+\[CapitalOmega]2, $CellContext`HA}, $CellContext`\[CapitalOmega]1[
+           Pattern[$CellContext`t$, 
+            Blank[]]] := $CellContext`\[CapitalOmega]P$$ 
+          Exp[(-2) 
+            Log[2] (($CellContext`t$ - ($CellContext`tf - $CellContext`ti)/
+               2)^2/$CellContext`\[Tau]^2)]; $CellContext`\[CapitalOmega]2[
+           Pattern[$CellContext`t$, 
+            Blank[]]] := $CellContext`\[CapitalOmega]S$$ 
+          Exp[(-2) 
+            Log[2] ((($CellContext`t$ + $CellContext`\[CapitalDelta]t) - \
+($CellContext`tf - $CellContext`ti)/
+               2)^2/$CellContext`\[Tau]^2)]; $CellContext`HA[
+           Pattern[$CellContext`t$, 
+            Blank[]]] := {{2 $CellContext`\[CapitalDelta]P$$, 
+            $CellContext`\[CapitalOmega]1[$CellContext`t$], 0}, {
+            $CellContext`\[CapitalOmega]1[$CellContext`t$], 0, 
+            $CellContext`\[CapitalOmega]2[$CellContext`t$]}, {0, 
+            $CellContext`\[CapitalOmega]2[$CellContext`t$], 
+            2 $CellContext`\[CapitalDelta]S$$}}; $CellContext`s = NDSolve[{{
+              Derivative[1][$CellContext`c1][$CellContext`t], 
+              Derivative[1][$CellContext`c2][$CellContext`t], 
+              Derivative[1][$CellContext`c3][$CellContext`t]} == (-I) Dot[
+               $CellContext`HA[$CellContext`t], {
+                $CellContext`c1[$CellContext`t], 
+                $CellContext`c2[$CellContext`t], 
+                $CellContext`c3[$CellContext`t]}], \
+$CellContext`c1[$CellContext`ti] == 1, $CellContext`c2[$CellContext`ti] == 
+            0, $CellContext`c3[$CellContext`ti] == 0}, {
+            $CellContext`c1[$CellContext`t], 
+            $CellContext`c2[$CellContext`t], 
+            $CellContext`c3[$CellContext`t]}, {$CellContext`t, \
+$CellContext`ti, $CellContext`tf}]; $CellContext`c1Solved = ReplaceAll[
+           $CellContext`c1[$CellContext`t], 
+           Part[$CellContext`s, 1, 1]]; $CellContext`c2Solved = ReplaceAll[
+           $CellContext`c2[$CellContext`t], 
+           Part[$CellContext`s, 1, 2]]; $CellContext`c3Solved = ReplaceAll[
+           $CellContext`c3[$CellContext`t], 
+           Part[$CellContext`s, 1, 3]]; 
+        Plot[{$CellContext`c1Solved 
+           Conjugate[$CellContext`c1Solved], $CellContext`c2Solved 
+           Conjugate[$CellContext`c2Solved], $CellContext`c3Solved 
+           Conjugate[$CellContext`c3Solved]}, {$CellContext`t, \
+$CellContext`ti + 2 ($CellContext`tf/$CellContext`\[Tau]), $CellContext`tf - 
+           2 ($CellContext`tf/$CellContext`\[Tau])}, PlotRange -> All, 
+          PlotLegends -> {
+           "\!\(\*SubscriptBox[\(P\), \(1\)]\)", 
+            "\!\(\*SubscriptBox[\(P\), \(2\)]\)", 
+            "\!\(\*SubscriptBox[\(P\), \(3\)]\)"}]], 
+      "Specifications" :> {{{$CellContext`\[CapitalDelta]P$$, 2}, -20, 20, 
+         2}, {{$CellContext`\[CapitalDelta]S$$, 4}, -20, 20, 
+         2}, {{$CellContext`\[CapitalOmega]P$$, 20}, 0, 100, 
+         5}, {{$CellContext`\[CapitalOmega]S$$, 20}, 0, 100, 5}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{472., {198., 205.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.6658224604868317`*^9, {3.6658225107684555`*^9, 3.66582254545754*^9}, 
+   3.6658227157766175`*^9, 3.665823617752624*^9, 3.665825336372841*^9, 
+   3.665825412864435*^9, 3.665831533549842*^9, 3.665832296899779*^9, 
+   3.6658327202385497`*^9, 3.665833019935118*^9, {3.6658330721213875`*^9, 
+   3.665833121513855*^9}, {3.6658332054876814`*^9, 3.665833215261248*^9}, {
+   3.6658332642829804`*^9, 3.6658332756449857`*^9}, {3.665833314585415*^9, 
+   3.6658333318917737`*^9}, 3.6658333862948713`*^9, 3.665833647477968*^9, 
+   3.66583386605297*^9, 3.6658345709881825`*^9, 3.6658346199078693`*^9, 
+   3.6658346924000545`*^9, {3.665834911638275*^9, 3.6658349259858427`*^9}, {
+   3.6658350159485984`*^9, 3.6658350849250546`*^9}, 3.665835244764327*^9, 
+   3.6658362297000623`*^9, 3.665838637761982*^9, 3.665838943881192*^9, {
+   3.665839040562047*^9, 3.6658390595072165`*^9}, 3.665840361546073*^9, 
+   3.665840411711005*^9, 3.665840866805026*^9, 3.665903947168743*^9, {
+   3.665904170450542*^9, 3.665904188577574*^9}, 3.665905137686837*^9, 
+   3.665905553706091*^9, 3.6659071367416344`*^9, 3.6659071982447596`*^9, 
+   3.6659080854094906`*^9, 3.6659100201548414`*^9, 3.66592418073452*^9, 
+   3.6659244494532137`*^9, 3.6659246247365837`*^9, 3.6659248084056025`*^9, 
+   3.6659257760884*^9, 3.66599191111322*^9, 3.665991969675764*^9, 
+   3.6659921466792545`*^9, {3.665994031962332*^9, 3.665994038318826*^9}, 
+   3.6659941156385417`*^9, 3.665994152502563*^9, {3.6659946832639165`*^9, 
+   3.665994713101389*^9}, 3.6659948251225595`*^9, 3.6659957068507376`*^9, 
+   3.6660117480959644`*^9, 3.668327324013689*^9, 3.6683330021292267`*^9, 
+   3.668339377908516*^9, 3.67972742170704*^9}]
+}, Open  ]]
+},
+WindowSize->{1536, 783},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"10.4 for Microsoft Windows (64-bit) (April 11, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 143, 2, 31, "Input"],
+Cell[704, 24, 396, 8, 68, "Text"],
+Cell[CellGroupData[{
+Cell[1125, 36, 246, 5, 52, "Input"],
+Cell[1374, 43, 924, 14, 46, "Output"]
+}, Open  ]],
+Cell[2313, 60, 925, 16, 72, "Input"],
+Cell[3241, 78, 189, 2, 30, "Text"],
+Cell[3433, 82, 1541, 41, 55, "Input"],
+Cell[4977, 125, 233, 3, 30, "Text"],
+Cell[CellGroupData[{
+Cell[5235, 132, 3196, 82, 99, "Input"],
+Cell[8434, 216, 3655, 67, 416, "Output"]
+}, Open  ]],
+Cell[12104, 286, 428, 11, 47, "Text"],
+Cell[CellGroupData[{
+Cell[12557, 301, 2604, 69, 55, "Input"],
+Cell[15164, 372, 3222, 63, 192, "Output"]
+}, Open  ]],
+Cell[18401, 438, 532, 11, 41, "Text"],
+Cell[18936, 451, 410, 8, 49, "Text"],
+Cell[CellGroupData[{
+Cell[19371, 463, 2276, 55, 33, "Input"],
+Cell[21650, 520, 5053, 88, 208, "Output"]
+}, Open  ]],
+Cell[26718, 611, 153, 2, 30, "Text"],
+Cell[CellGroupData[{
+Cell[26896, 617, 1195, 26, 52, "Input"],
+Cell[28094, 645, 2268, 67, 90, "Output"]
+}, Open  ]],
+Cell[30377, 715, 1268, 23, 87, "Text"],
+Cell[CellGroupData[{
+Cell[31670, 742, 8284, 197, 242, "Input"],
+Cell[39957, 941, 7299, 128, 453, "Output"]
+}, Open  ]]
+}
+]
+*)
+
