@@ -1,0 +1,164 @@
+ClearAll["Global`*"]
+SetDirectory[NotebookDirectory[]]
+C:\Users\Javier\Desktop\Física\Prácticas\Mathematica\Propagación MB 3 niveles\MBCPRFiles\Everything in 4000 Loop Files
+CUIDADO: GUARDAR EL PROGRAMA EN CARPETA PROPIA CON EL FICHERO CREACION DE DATOS
+CUIDADO: CUANDO SE ABORTE EL PROGRAMA, CORRER EL CIERRE DEL FICHERO EN LA ULTIMA LINEA O NO SE GUARDARÁN LOS DATOS EN POSTERIORES EJECUCIONES DEL PROGRAMA
+CUIDADO: PONER j, LONG, λP,λS,μP,LoopsPerDoc, N0 y μS IGUALES A LOS DEL FICHERO CREACION DE DATOS
+τ=5;(*in ns*)
+ti=0;(*in ns*)
+tf=200;(*in ns*)
+numpasos=(tf-ti)/0.5;
+ΩE=0.2;(*in ns^-1*)
+ΔE=370920;(*in ns^-1*)
+ΔH=370920;(*in ns^-1*)
+ℏ=1 10^-25;(*J·ns*)
+c=3 10^5; (*μm/ns*)
+ϵ0=8.8541 10^-18;(*in F/μm*)
+N0=1 10^4; (*Sacada de la ecuacion de los gases ideales, igual para todos los gases*)
+			(*Densidad atómica 137 (g/mol) ----BARIO---- in part/μm^3*)
+μP=8*3.33*10^-24;(*momento dipolar electrico------Bario----8 Debye(Debye=3.33 10^-24 C·μm)----*)
+μS=0.2* 3.33*10^-24;(*momento dipolar electrico----Bario----0.2 Debye------*)
+λP=553.7 10^-3;(*in μm*)
+λS=1500.4 10^-3;(*in μm*)
+kP=2 π/λP;(*in μm^-1*)
+kS=2 π/λS;(*in μm^-1*)
+ωP=kP c;(*in ns^-1*)
+ωS=kS c;(*in ns^-1*)
+ωE=(ωP-ωS)/2;(*La energia entre los niveles 1 y 3 es La diferencia entre las energias dadas por los fotones de los laseres de stokes y probe. La mitad de esa energía corresponde a la frecuencia del láser de trigger que coincide con la frecuencia del laser generado.*)
+kE=ωE/c
+ωH=ωE;
+Δk=0;(*in free space*)
+
+βE=ωE N0 (Abs[μS])^2/(2 ϵ0 c ℏ ΔE)
+βH=ωH N0 (Abs[μP])^2/(2 ϵ0 c ℏ ΔH)
+
+ΩE0=ΩE Exp[-2 Log[2]((t-(tf-ti)/2)/τ)^2];
+ΩH0=0;
+
+j=200;
+(*j is the number of loops*)
+LONG=1; (*in μm*)
+ξi=0;
+ξf=LONG/(j);
+paso=LONG/(j)(*in μm*)
+3.57998
+2.41754*10^-8
+0.0000386807
+1/200
+(*En el siguiente Do separado guardamos el tiempo para calcularlo sólo una vez en vez de una por cada iteración*)
+t=ti;
+Listatime={};
+Do[
+Listatime=Append[Listatime,t];
+t2=t;
+Clear[t];
+t=t2+0.5,
+{numpasos}];
+SetOptions[OpenWrite[StringJoin["Trigger_and_Generated_.txt"]],PageWidth->Infinity];
+WriteString[StringJoin["Trigger_and_Generated_.txt"],"{"];
+
+i=1;
+Doc=1;
+LoopsPerDoc=4000;
+Sol0={};
+
+Timing[Do[
+Clear[iteration,Files];
+iteration={};
+iteration=OpenRead[StringJoin["Popu_Cohe_Rabi_",ToString[Doc],".txt"]];
+Files=Read[iteration];
+Close[StringJoin["Popu_Cohe_Rabi_",ToString[Doc],".txt"]];
+
+If[j-LoopsPerDoc*Doc>0,
+Do[
+Clear[s,ΩE,ΩH,ρ13,Rρ13,Iρ13,Lista1ΩH,Lista1ΩE,RabiTRabiG,FuncΩE,FuncΩH,t];
+Rρ13=Interpolation[Take[Files[[i-LoopsPerDoc*(Doc-1),6]],{1,401}]][t];
+Iρ13=Interpolation[Take[Files[[i-LoopsPerDoc*(Doc-1),7]],{1,401}]][t];
+ρ13=Rρ13+I Iρ13+$MachineEpsilon;
+s=Sqrt[βE βH ( Abs[ρ13])^2]+$MachineEpsilon;
+ΩE=FunctionInterpolation[ΩE0 Cos[s *paso],{t,ti,tf},InterpolationPoints->2000][t];
+ΩH=FunctionInterpolation[-I ΩE0 (βH *ρ13/s)Sin[s* paso]+ΩH0,{t,ti,tf},InterpolationPoints->2000][t];
+
+Lista1ΩH={};
+Lista1ΩE={};
+RabiTRabiG={};
+
+FuncΩE=ΩE;
+FuncΩH=ΩH;
+t=ti;
+Do[
+Clear[ValorΩE,ValorΩH];
+ValorΩE=FuncΩE;
+ValorΩH=FuncΩH;
+Lista1ΩE=Append[Lista1ΩE,Abs[ValorΩE]];
+Lista1ΩH=Append[Lista1ΩH,Abs[ValorΩH]];
+t2=t;
+Clear[t,FuncΩE,FuncΩH,ValorΩE,ValorΩH];
+FuncΩE=ΩE;
+FuncΩH=ΩH;
+t=t2+0.5,
+{numpasos}];
+
+
+RabiTRabiG=Append[RabiTRabiG,Partition[Riffle[Listatime,Lista1ΩE],2,2]];
+RabiTRabiG=Append[RabiTRabiG,Partition[Riffle[Listatime,Lista1ΩH],2,2]];
+
+Write[StringJoin["Trigger_and_Generated_.txt"],RabiTRabiG];
+WriteString[StringJoin["Trigger_and_Generated_.txt"],","];
+Clear[ΩE0,ΩH0,t];
+ΩE0=ΩE;
+ΩH0=ΩH;
+i=i+1,
+{LoopsPerDoc}];
+
+,(*Coma entre condicion cierta o falsa del IF*)
+
+Do[
+
+Clear[s,ΩE,ΩH,ρ13,Rρ13,Iρ13,Lista1ΩH,Lista1ΩE,RabiTRabiG,FuncΩE,FuncΩH,t];
+Rρ13=Interpolation[Take[Files[[i-LoopsPerDoc*(Doc-1),6]],{1,401}]][t];
+Iρ13=Interpolation[Take[Files[[i-LoopsPerDoc*(Doc-1),7]],{1,401}]][t];
+ρ13=Rρ13+I Iρ13+$MachineEpsilon;
+s=Sqrt[βE βH ( Abs[ρ13])^2]+$MachineEpsilon;
+ΩE=FunctionInterpolation[ΩE0 Cos[s *paso],{t,ti,tf},InterpolationPoints->2000][t];
+ΩH=FunctionInterpolation[-I ΩE0 (βH *ρ13/s)Sin[s* paso]+ΩH0,{t,ti,tf},InterpolationPoints->2000][t];
+
+Lista1ΩH={};
+Lista1ΩE={};
+RabiTRabiG={};
+
+FuncΩE=ΩE;
+FuncΩH=ΩH;
+t=ti;
+Do[
+Clear[ValorΩE,ValorΩH];
+ValorΩE=FuncΩE;
+ValorΩH=FuncΩH;
+Lista1ΩE=Append[Lista1ΩE,Abs[ValorΩE]];
+Lista1ΩH=Append[Lista1ΩH,Abs[ValorΩH]];
+t2=t;
+Clear[t,FuncΩE,FuncΩH,ValorΩE,ValorΩH];
+FuncΩE=ΩE;
+FuncΩH=ΩH;
+t=t2+0.5,
+{numpasos}];
+
+
+RabiTRabiG=Append[RabiTRabiG,Partition[Riffle[Listatime,Lista1ΩE],2,2]];
+RabiTRabiG=Append[RabiTRabiG,Partition[Riffle[Listatime,Lista1ΩH],2,2]];
+
+Write[StringJoin["Trigger_and_Generated_.txt"],RabiTRabiG];
+WriteString[StringJoin["Trigger_and_Generated_.txt"],","];
+Clear[ΩE0,ΩH0,t];
+ΩE0=ΩE;
+ΩH0=ΩH;
+i=i+1,
+{j-LoopsPerDoc*(Doc-1)}];
+];
+Doc++,
+ {IntegerPart[j/LoopsPerDoc]+1}];]
+{35.6406,Null}
+WriteString[StringJoin["Trigger_and_Generated_.txt"],"0 }"];
+Close[StringJoin["Trigger_and_Generated_.txt"]];
+i
+201
