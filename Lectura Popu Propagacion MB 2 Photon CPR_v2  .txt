@@ -1,0 +1,71 @@
+ClearAll["Global`*"]
+SetDirectory[NotebookDirectory[]]
+C:\Users\Javier\Desktop\Física\Prácticas\Mathematica\Propagación MB 3 niveles\MBCPRFiles\Everything in 4000 Loop Files
+CUIDADO: GUARDAR EL PROGRAMA EN CARPETA PROPIA CON EL FICHERO CREACION DATOS Y PONER LA MISMA J(NUMERO DE ITERACIONES)
+j=20;
+(*j is the number of loops*)
+Doc=1;
+LoopsPerDoc=4000;
+i=1;
+Popu11={};
+Popu22={};
+Popu33={};
+Do[
+Clear[iteration,Files];
+iteration={};
+Files={};
+iteration=OpenRead[StringJoin["Popu_Cohe_Rabi_",ToString[Doc],".txt"]];
+Files=Read[iteration];
+Close[StringJoin["Popu_Cohe_Rabi_",ToString[Doc],".txt"]];
+
+If[j-LoopsPerDoc*Doc>0,
+
+Do[
+Popu11=Append[Popu11,Files[[i,1]]];
+Popu22=Append[Popu22,Files[[i,2]]];
+Popu33=Append[Popu33,Files[[i,3]]];
+i++,
+{LoopsPerDoc}];
+
+,(*Coma entre condicion cierta o falsa del IF*)
+
+Do[
+Popu11=Append[Popu11,Files[[i,1]]];
+Popu22=Append[Popu22,Files[[i,2]]];
+Popu33=Append[Popu33,Files[[i,3]]];
+i++,
+{j-LoopsPerDoc*(Doc-1)}];
+];
+
+Doc++,
+ {IntegerPart[j/LoopsPerDoc]+1}];
+
+Clear[Files];
+ListLinePlot[{Popu22[[20]]},PlotRange->All]
+
+Manipulate[
+a=Take[Popu11[[n]],{150,251}];
+b=Take[Popu22[[n]],{150,251}];
+c=Take[Popu33[[n]],{150,251}];
+ListLinePlot[{a,b,c},PlotRange->All, PlotLegends->{"ρ11","ρ22","ρ33"}],{{n,1},1,j,1}]
+Manipulate[a = Take[Popu11[[n]], {150, 251}]; 
+   b = Take[Popu22[[n]], {150, 251}]; c = Take[Popu33[[n]], {150, 251}]; 
+   ListLinePlot[{a, b, c}, PlotRange -> All, PlotLegends -> 
+     {"ρ11", "ρ22", "ρ33"}], {{n, 1}, 1, 20, 1}]
+a=Take[Popu11[[1]],{150,251}];
+b=Take[Popu22[[1]],{150,251}];
+c=Take[Popu33[[1]],{150,251}];
+ListLinePlot[{a, b,c},PlotRange->All,GridLines->Automatic, PlotLegends->{"ρ11","ρ22","ρ33"},PlotLabel->"Initial population"]
+	ρ11
+	ρ22
+	ρ33
+
+
+a=Take[Popu11[[j]],{150,251}];
+b=Take[Popu22[[j]],{150,251}];
+c=Take[Popu33[[j]],{150,251}];
+ListLinePlot[{a, b,c},PlotRange->All,GridLines->Automatic, PlotLegends->{"ρ11","ρ22","ρ33"},PlotLabel->"Final population"]
+	ρ11
+	ρ22
+	ρ33
+
