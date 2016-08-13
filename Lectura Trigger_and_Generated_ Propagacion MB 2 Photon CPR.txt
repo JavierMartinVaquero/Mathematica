@@ -1,0 +1,52 @@
+ClearAll["Global`*"]
+SetDirectory[NotebookDirectory[]]
+C:\Users\Javier\Desktop\Física\Prácticas\Mathematica\Propagación MB 3 niveles\MBCPRFiles\Everything in 4000 Loop Files
+ℏ=1 10^-25;(*J·ns*)
+μ12=8*3.33*10^-24;(*momento dipolar electrico------Bario----8 Debye(Debye=3.33 10^-24 C·μm)----*)
+μ23=0.2* 3.33*10^-24;(*momento dipolar electrico----Bario----0.2 Debye------*)
+c=3 10^5; (*μm/ns*)
+ϵ0=8.8541 10^-18;(*in F/μm*)
+CUIDADO: GUARDAR EL PROGRAMA EN CARPETA PROPIA CON EL FICHERO LECTURA DATOS
+CUIDADO: CUANDO SE ABORTE EL PROGRAMA, CORRER EL CIERRE DEL FICHERO EN LA ULTIMA LINEA O NO SE GUARDARÁN LOS DATOS EN POSTERIORES EJECUCIONES DEL PROGRAMA
+j=200;
+(*j is the number of loops*)
+LONG=1; (*in μm*)
+ξi=LONG/(j);
+paso=LONG/(j);
+iteration={};
+iteration=OpenRead[StringJoin["Trigger_and_Generated_.txt"]];
+Files=Read[iteration];
+ListLinePlot[{Files[[1,1]]},PlotRange->All]
+Close[StringJoin["Trigger_and_Generated_.txt"]];
+
+(*Manipulate[
+a=Take[Files[[n,1]]];
+ListLinePlot[a,PlotRangeAll, PlotLegends{"ΩE"}],{{n,1},1,j,1}]
+Manipulate[
+a=Take[Files[[n,2]]];
+ListLinePlot[a,PlotRangeAll, PlotLegends{"ΩH"}],{{n,1},1,j,1}]*)
+Lista2ΩE={};
+Lista2ΩH={};
+ListaN={};
+n=1;
+Do[
+Lista2ΩE=Append[Lista2ΩE,Drop[Flatten[Files[[n,1]]],{1,800,2}]];
+Lista2ΩH=Append[Lista2ΩH,Drop[Flatten[Files[[n,2]]],{1,800,2}]];
+ListaN=Append[ListaN,n];
+n=n+1,
+{j}];
+ListDensityPlot[Lista2ΩE,PlotRange->All,PlotLegends->Automatic,ColorFunction->"Rainbow",PlotLabel->"Trigger Rabi"]
+ListDensityPlot[Lista2ΩH,PlotRange->All,PlotLegends->Automatic,ColorFunction->"Rainbow",PlotLabel->"Generated Rabi"]
+
+
+
+ListPlot3D[{10^9  c/2 ϵ0 (ℏ Lista2ΩE/μ12)^2,Drop[Flatten[Files[[1,1]]],{2,800,2}],ListaN},PlotRange->All,ColorFunction->"Rainbow"]
+ListPlot3D[{10^9  c/2 ϵ0 (ℏ Lista2ΩH/μ12)^2,Drop[Flatten[Files[[1,1]]],{2,800,2}],ListaN},PlotRange->All,ColorFunction->"Rainbow"]
+
+
+(*Manipulate[
+IE=Partition [Riffle[Take[Drop[Flatten[Files[[n,1]]],{2,800,2}]],10^21 c/(2*μ12) ϵ0 ℏ Take[Drop[Flatten[Files[[n,1]]],{1,800,2}]]],2,2];
+ListLinePlot[IE,PlotRangeAll, PlotLegends{"IE"}],{{n,1},1,j,1}]*)
+(*Manipulate[
+IH=Partition [Riffle[Take[Drop[Flatten[Files[[n,2]]],{2,800,2}]],10^21 c/(2*μ12) ϵ0 ℏ Take[Drop[Flatten[Files[[n,2]]],{1,800,2}]]],2,2];
+ListLinePlot[IH,PlotRangeAll, PlotLegends{"IH"}],{{n,1},1,j,1}]*)
