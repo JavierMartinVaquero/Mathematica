@@ -1,0 +1,79 @@
+ClearAll["Global`*"]
+SetDirectory[NotebookDirectory[]]
+C:\Users\Javier\Desktop\Física\Prácticas\Mathematica\Propagación MB 3 niveles\MBCPRFiles\Everything in 4000 Loop Files
+CUIDADO: GUARDAR EL PROGRAMA EN CARPETA PROPIA CON EL FICHERO CREACION DATOS Y PONER LA MISMA J(NUMERO DE ITERACIONES)
+j=20;
+(*j is the number of loops*)
+Doc=1;
+LoopsPerDoc=4000;
+i=1;
+Rabi12={};
+Rabi23={};
+Do[
+Clear[iteration,Files];
+iteration={};
+Files={};
+iteration=OpenRead[StringJoin["Popu_Cohe_Rabi_",ToString[Doc],".txt"]];
+Files=Read[iteration];
+Close[StringJoin["Popu_Cohe_Rabi_",ToString[Doc],".txt"]];
+
+If[j-LoopsPerDoc*Doc>0,
+
+Do[
+Rabi12=Append[Rabi12,Files[[i,10]]];
+Rabi23=Append[Rabi23,Files[[i,11]]];
+i++,
+{LoopsPerDoc}];
+
+,(*Coma entre condicion cierta o falsa del IF*)
+
+Do[
+Rabi12=Append[Rabi12,Files[[i,10]]];
+Rabi23=Append[Rabi23,Files[[i,11]]];
+i++,
+{j-LoopsPerDoc*(Doc-1)}];
+];
+
+Doc++,
+ {IntegerPart[j/LoopsPerDoc]+1}];
+
+Clear[Files];
+ListLinePlot[{Rabi12[[20]]},PlotRange->All]
+
+Manipulate[
+a=Take[Rabi12[[n]],{150,251}];
+ListLinePlot[a,PlotRange->All, PlotLegends->{"Rabi of Probe laser"}],{{n,1},1,j,1}]
+Manipulate[
+a=Take[Rabi23[[n]],{150,251}];
+ListLinePlot[a,PlotRange->All, PlotLegends->{"Rabi of Pump laser"}],{{n,1},1,j,1}]
+Manipulate[a = Take[Rabi12[[n]], {150, 251}]; 
+   ListLinePlot[a, PlotRange -> All, PlotLegends -> {"Rabi of Probe laser"}], 
+  {{n, 1}, 1, 20, 1}]
+Manipulate[a = Take[Rabi23[[n]], {150, 251}]; 
+   ListLinePlot[a, PlotRange -> All, PlotLegends -> {"Rabi of Pump laser"}], 
+  {{n, 1}, 1, 20, 1}]
+Lista2ΩN1={};
+Lista2ΩN2={};
+n=1;
+Do[
+Lista2ΩN1=Append[Lista2ΩN1,Drop[Flatten[Rabi12[[10]]],{1,802,2}]];
+Lista2ΩN2=Append[Lista2ΩN2,Drop[Flatten[Rabi23[[11]]],{1,802,2}]];
+n=n+1,
+{j}];
+ListDensityPlot[Lista2ΩN1,PlotRange->All,PlotLegends->Automatic,ColorFunction->"Rainbow",PlotLabel->"Probe Rabi"]
+ListDensityPlot[Lista2ΩN2,PlotRange->All,PlotLegends->Automatic,ColorFunction->"Rainbow",PlotLabel->"Pump Rabi"]
+
+
+a=Take[Rabi12[[1]],{150,251}];
+b=Take[Rabi12[[j]],{150,251}];
+ListLinePlot[{a, b},PlotRange->All,GridLines->Automatic,PlotLegends->{"Initial pulse","Final pulse"},PlotLabel->"Probe"]
+	Initial pulse
+	Final pulse
+
+
+a=Take[Rabi23[[1]],{150,251}];
+b=Take[Rabi23[[j]],{150,251}];
+ListLinePlot[{a, b},PlotRange->All,GridLines->Automatic,PlotLegends->{"Initial pulse","Final pulse"},PlotLabel->"Pump"]
+	Initial pulse
+	Final pulse
+
